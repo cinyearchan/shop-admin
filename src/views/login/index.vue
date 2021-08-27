@@ -3,12 +3,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { getLoginInfo } from '@/api/common'
+import type { ILoginInfo } from '@/api/types/common'
+import { defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
   name: 'Login',
   setup () {
-    return {}
+    const list = ref<ILoginInfo['slide']>([])
+
+    onMounted(() => {
+      getLoginInfo().then(data => {
+        list.value = data.slide
+      })
+    })
+
+    return {
+      list
+    }
   }
 })
 </script>
