@@ -25,6 +25,6 @@ export const getLoginInfo = () => {
 
   return request<ILoginInfo>({
     method: 'GET',
-    url: '/login/info'
+    url: '/admin/login/info'
   })
 }
