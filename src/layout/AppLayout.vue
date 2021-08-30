@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-aside width="200px">
-      Aside
+      <AppMenu />
     </el-aside>
     <el-container>
       <el-header>Header</el-header>
@@ -12,16 +12,19 @@
   </el-container>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts" setup>
+import AppMenu from './components/AppMenu.vue'
+</script>
 
 <style lang="scss" scoped>
 .el-header, .el-footer {
-  background-color: #e3c0d1;
+  background-color: #b3c0d1;
   color: #333;
 }
 .el-aside {
-  background-color: #d3dce6;
+  background-color: #304156;
   color: #333;
+  text-align: left;
 }
 .el-main {
   background-color: #e9eef3;
