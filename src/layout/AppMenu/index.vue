@@ -5,6 +5,7 @@
     background-color="#304156"
     text-color="#fff"
     active-text-color="#ffd04b"
+    :collapse="$store.state.isCollapse"
     router
   >
     <el-menu-item index="/">
@@ -71,7 +72,6 @@
 </template>
 
 <script lang="ts" setup>
-
 </script>
 
 <style lang="scss" scoped>
