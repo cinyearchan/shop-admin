@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 const request = axios.create({
-  // baseURL: import.meta.env.VITE_API_BASEURL
+  baseURL: import.meta.env.VITE_API_BASEURL
 })
 
 request.interceptors.request.use(config => {
@@ -18,5 +18,5 @@ request.interceptors.response.use(response => {
 
 export default async <T = any>(config: AxiosRequestConfig) => {
   const res = await request(config)
-  return res.data.data as T
+  return (res.data.data || res.data) as T
 }

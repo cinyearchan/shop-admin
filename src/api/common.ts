@@ -25,6 +25,17 @@ export const getLoginInfo = () => {
 
   return request<ILoginInfo>({
     method: 'GET',
-    url: '/admin/login/info'
+    url: '/login/info'
+  })
+}
+
+export const getCaptcha = () => {
+  return request<Blob>({
+    method: 'GET',
+    url: '/captcha_pro',
+    params: {
+      stamp: Date.now()
+    },
+    responseType: 'blob'
   })
 }
