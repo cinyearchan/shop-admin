@@ -78,4 +78,11 @@
 .el-menu {
   border-right: none;
 }
+.el-menu:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 </style>

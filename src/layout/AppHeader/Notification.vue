@@ -1,5 +1,5 @@
 <template>
-  Notification
+  <i class="el-icon-bell" />
 </template>
 
 <script lang="ts" setup>
