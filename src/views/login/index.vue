@@ -112,7 +112,10 @@ export default defineComponent({
       loading.value = true
       try {
         const data = await login(user)
-        store.commit('setUser', data.user_info)
+        store.commit('setUser', {
+          ...data.user_info,
+          token: data.token
+        })
         // router.replace({
         //   name: 'home'
         // })

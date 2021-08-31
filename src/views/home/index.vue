@@ -12,7 +12,7 @@ export default defineComponent({
   name: 'Home',
   setup () {
     const store = useStore()
-    console.log('store', store)
+    // console.log('store', store)
     return {
       store
     }

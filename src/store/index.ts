@@ -7,7 +7,7 @@ import { USER } from '@/utils/constants'
 export interface State {
   count: number
   isCollapse: boolean,
-  user: IUserInfo | null
+  user: ({ token: string } & IUserInfo) | null
 }
 
 export const key: InjectionKey<Store<State>> = Symbol('store')
@@ -17,7 +17,7 @@ export const store = createStore<State>({
     return {
       count: 0,
       isCollapse: false,
-      user: getItem<IUserInfo>(USER)
+      user: getItem<{ token: string } & IUserInfo>(USER)
     }
   },
   mutations: {

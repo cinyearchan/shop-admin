@@ -47,3 +47,10 @@ export const login = (data: ILoginData) => {
     data
   })
 }
+
+export const logout = () => {
+  return request({
+    method: 'GET',
+    url: '/setting/admin/logout'
+  })
+}

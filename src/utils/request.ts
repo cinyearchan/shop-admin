@@ -1,11 +1,18 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { ElMessage } from 'element-plus'
+import { store } from '@/store'
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_BASEURL
 })
 
 request.interceptors.request.use(config => {
+  const user = store.state.user
+  if (user && user.token) {
+    config.headers = {
+      Authorization: `Bearer ${user.token}`
+    }
+  }
   return config
 }, error => {
   return Promise.reject(error)
