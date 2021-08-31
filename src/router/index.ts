@@ -6,11 +6,15 @@ import permission from './modules/permission'
 import product from './modules/product'
 import 'nprogress/nprogress.css'
 import nProgress from 'nprogress'
+import { store } from '@/store'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: AppLayout,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         path: '',
@@ -38,8 +42,16 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach(() => {
+router.beforeEach((from, to) => {
   nProgress.start()
+  if (to.meta.requiresAuth && !store.state.user) {
+    return {
+      path: '/login',
+      query: {
+        redirect: to.fullPath
+      }
+    }
+  }
 })
 
 router.afterEach(() => {
