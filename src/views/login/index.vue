@@ -67,17 +67,26 @@
 // import { getLoginInfo } from '@/api/common'
 // import type { ILoginInfo } from '@/api/types/common'
 import { defineComponent, reactive, ref, onMounted } from 'vue'
-import { getCaptcha } from '@/api/common'
-import type { IFormRule } from '@/types/element-plus'
+import { getCaptcha, login } from '@/api/common'
+import { IElForm, IFormRule } from '@/types/element-plus'
+import { ILoginData } from '@/api/types/common'
+import { useRouter, useRoute } from 'vue-router'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: 'Login',
   setup () {
-    const user = reactive({
+    const router = useRouter()
+    const route = useRoute()
+    const store = useStore()
+
+    const user = reactive<ILoginData>({
       account: 'admin',
       pwd: '123456',
       imgcode: ''
     })
+
+    const form = ref<IElForm | null>(null)
 
     const loading = ref(false)
 
@@ -96,12 +105,32 @@ export default defineComponent({
     const captchaSrc = ref('')
 
     const handleSubmit = async () => {
-      console.log('handleSubmit')
+      const valid = await form.value?.validate()
+      if (!valid) {
+        return false
+      }
+      loading.value = true
+      try {
+        const data = await login(user)
+        store.commit('setUser', data.user_info)
+        // router.replace({
+        //   name: 'home'
+        // })
+
+        let redirect = route.query.redirect || '/'
+        if (typeof redirect !== 'string') {
+          redirect = '/'
+        }
+        router.replace(redirect)
+      } catch (e) {
+        loadCaptcha()
+      } finally {
+        loading.value = false
+      }
     }
 
     const loadCaptcha = async () => {
       const data = await getCaptcha()
-      console.log(data)
       captchaSrc.value = URL.createObjectURL(data)
     }
 
@@ -111,6 +140,7 @@ export default defineComponent({
 
     return {
       user,
+      form,
       loading,
       rules,
       handleSubmit,

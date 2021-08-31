@@ -2,7 +2,7 @@
  * 公共基础接口封装
  */
 import request from '@/utils/request'
-import { ILoginInfo } from './types/common'
+import { ILoginData, ILoginInfo, ILoginResponse } from './types/common'
 
 // interface ResponseData<T = any> {
 //   status: number
@@ -37,5 +37,13 @@ export const getCaptcha = () => {
       stamp: Date.now()
     },
     responseType: 'blob'
+  })
+}
+
+export const login = (data: ILoginData) => {
+  return request<ILoginResponse>({
+    method: 'POST',
+    url: '/login',
+    data
   })
 }
