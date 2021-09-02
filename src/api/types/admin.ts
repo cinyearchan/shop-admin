@@ -3,7 +3,7 @@ export interface IListParams {
   limit: number
   name: string
   roles?: string
-  status?: 0 | 1 | ''
+  status?: '' | 0 | 1
 }
 
 export interface IAdmin {
@@ -22,6 +22,7 @@ export interface IAdmin {
   is_del: number // 0 | 1
   _add_time: string
   _last_time: string
+  statusLoading?: boolean
 }
 
 export interface IListResponse {
