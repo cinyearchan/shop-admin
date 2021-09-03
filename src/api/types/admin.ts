@@ -34,7 +34,7 @@ export interface IAdminData {
   account: string
   conf_pwd: string
   pwd: string
-  roles: string
+  roles: number[]
   status: number
   real_name: string
 }
@@ -65,29 +65,29 @@ export interface IValidateInfo {
   options: IAdminOptions[]
 }
 
-export interface IAdminForm {
-  rules: object[]
-  type: string
-  field: string
-  value: number[] | number
-  title: string
-  props: {
-    type?: string
-    placeholder?: string
-    multiple?: boolean
-    validate: IValidateInfo[]
-  }
-}
+// export interface IAdminForm {
+//   rules: object[]
+//   type: string
+//   field: string
+//   value: number[] | number
+//   title: string
+//   props: {
+//     type?: string
+//     placeholder?: string
+//     multiple?: boolean
+//     validate: IValidateInfo[]
+//   }
+// }
 
-export interface ICurrentAdmin {
-  id?: number
-  account?: string
-  head_pic?: string
-  real_name?: string
-  roles?: string[]
-  last_ip?: string
-  last_time?: number
-  add_time?: number
-  login_count?: number
-  level?: number
-}
+// export interface ICurrentAdmin {
+//   id?: number
+//   account?: string
+//   head_pic?: string
+//   real_name?: string
+//   roles?: string[]
+//   last_ip?: string
+//   last_time?: number
+//   add_time?: number
+//   login_count?: number
+//   level?: number
+// }

@@ -147,6 +147,11 @@
       />
     </app-card>
   </page-container>
+  <admin-form
+    v-model="formVisible"
+    v-model:admin-id="adminId"
+    @success="handleFormSuccess"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -154,6 +159,7 @@ import { ref, reactive, onMounted } from 'vue'
 import { getAdmins, deleteAdmin, updateAdminStatus } from '@/api/admin'
 import type { IListParams, IAdmin } from '@/api/types/admin'
 import { ElMessage } from 'element-plus'
+import AdminForm from './AdminForm.vue'
 
 const list = ref<IAdmin[]>([])
 const listCount = ref(0)
@@ -208,10 +214,10 @@ const handleUpdate = (id: number) => {
   formVisible.value = true
 }
 
-// const handleFormSuccess = () => {
-//   formVisible.value = false
-//   loadList()
-// }
+const handleFormSuccess = () => {
+  formVisible.value = false
+  loadList()
+}
 </script>
 
 <style lang="scss" scoped>

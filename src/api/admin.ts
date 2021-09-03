@@ -1,5 +1,6 @@
 import request from '@/utils/request'
-import { IAdminData, IAdminForm, IAdminInfo, ICurrentAdmin, IListParams, IListResponse } from './types/admin'
+import { IAdminData, IAdminInfo, IListParams, IListResponse } from './types/admin'
+import { IFormData } from './types/form'
 
 /**
  * 管理员列表
@@ -81,22 +82,35 @@ export const updateCurrentAdmin = (data: IAdminInfo) => {
 /**
  * 管理员添加表单
  */
-export const createAdminForm = () => {
-  return request<IAdminData>({
-    method: 'GET',
-    url: '/setting/admin/create'
-  })
-}
+// export const createAdminForm = () => {
+//   return request<IAdminData>({
+//     method: 'GET',
+//     url: '/setting/admin/create'
+//   })
+// }
 
 /**
  * 获取修改管理员表单
  * @param id number
  * @returns IAdminForm
  */
-export const updateAdminForm = (id: number) => {
-  return request<IAdminForm>({
+export const getAdmin = (id: number) => {
+  return request<IFormData>({
     method: 'GET',
     url: `/setting/admin/${id}/edit`
+  }).then(data => {
+    const obj: Record<string, any> = {}
+    data.rules.forEach(item => {
+      obj[item.field] = item.value
+    })
+    return obj as {
+      account: string
+      pwd: string
+      conf_pwd: string
+      real_name: string
+      roles: string[]
+      status: 0 | 1
+    }
   })
 }
 
@@ -105,8 +119,21 @@ export const updateAdminForm = (id: number) => {
  * @returns ICurrentAdmin
  */
 export const getCurrentAdmin = () => {
-  return request<ICurrentAdmin>({
+  return request({
     method: 'GET',
     url: '/setting/info'
+  })
+}
+
+export const getRoles = () => {
+  return request<IFormData>({
+    method: 'GET',
+    url: '/setting/admin/create'
+  }).then(data => {
+    const roles = data.rules.find(item => item.field === 'roles')
+    if (roles && roles.options) {
+      return roles.options
+    }
+    return []
   })
 }
