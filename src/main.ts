@@ -5,6 +5,7 @@ import { store, key } from './store'
 import ElementPlus from '@/plugins/element-plus'
 import VXETable from 'vxe-table'
 
+import 'vxe-table/lib/style.css'
 import '@/styles/index.scss'
 
 // console.log(import.meta.env.BASE_URL)
