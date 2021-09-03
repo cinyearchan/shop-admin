@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/'
 import { store, key } from './store'
 import ElementPlus from '@/plugins/element-plus'
+import VXETable from 'vxe-table'
 
 import '@/styles/index.scss'
 
@@ -10,7 +11,7 @@ import '@/styles/index.scss'
 
 const app = createApp(App)
 
-app.use(router).use(store, key).use(ElementPlus)
+app.use(router).use(store, key).use(ElementPlus).use(VXETable)
 
 /**
  * 自动注册全局组件
