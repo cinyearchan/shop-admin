@@ -9,18 +9,26 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@element-plus/icons": "^0.0.11",
     "axios": "^0.21.1",
+    "ionicons": "^5.5.3",
     "nprogress": "^0.2.0",
+    "sortablejs": "^1.14.0",
     "vue": "^3.2.6",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2",
-    "vxe-table": "^4.0.27"
+    "vuex-persistedstate": "^4.0.0",
+    "vxe-table": "^4.0.27",
+    "wangeditor": "^4.7.7",
+    "xe-utils": "^3.3.2",
+    "xlsx": "^0.17.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@types/node": "^16.7.2",
     "@types/nprogress": "^0.2.0",
+    "@types/sortablejs": "^1.10.7",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
     "@vitejs/plugin-vue": "^1.6.0",
@@ -43,8 +51,7 @@
   },
   "lint-staged": {
     "*.{vue,ts,tsx,js,jsx}": [
-      "npm run lint",
-      "git add"
+      "npm run lint"
     ]
   }
 }

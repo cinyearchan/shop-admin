@@ -4,6 +4,7 @@ import media from './modules/media'
 import order from './modules/order'
 import permission from './modules/permission'
 import product from './modules/product'
+import system from './modules/system'
 import 'nprogress/nprogress.css'
 import nProgress from 'nprogress'
 import { store } from '@/store'
@@ -27,7 +28,8 @@ const routes: RouteRecordRaw[] = [
       product,
       media,
       order,
-      permission
+      permission,
+      system
     ]
   },
   {

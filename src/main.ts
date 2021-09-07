@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/'
 import { store, key } from './store'
 import ElementPlus from '@/plugins/element-plus'
+import 'xe-utils'
 import VXETable from 'vxe-table'
 
 import 'vxe-table/lib/style.css'
